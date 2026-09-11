@@ -18,21 +18,21 @@ export default function Preloader() {
   if (!loading) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#063B52] text-white transition-opacity duration-700 ease-out">
-      {/* Background Ambient Glowing Orbs */}
-      <div className="absolute w-96 h-96 rounded-full bg-[#39B54A]/25 blur-3xl animate-pulse" />
-      <div className="absolute w-80 h-80 rounded-full bg-[#087EA4]/25 blur-3xl animate-pulse delay-500" />
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F8FAF8] text-[#063B52] transition-opacity duration-700 ease-out">
+      {/* Subtle Mint & Emerald Ambient Orbs */}
+      <div className="absolute w-96 h-96 rounded-full bg-[#169447]/10 blur-3xl animate-pulse" />
+      <div className="absolute w-80 h-80 rounded-full bg-[#087EA4]/10 blur-3xl animate-pulse delay-500" />
 
       <div className="relative z-10 flex flex-col items-center space-y-6 px-6 text-center">
-        {/* Seamless Floating Logo without white background patch box */}
+        {/* Exact Original Colored Logo with zero white background box patch */}
         <div className="relative group transition-transform duration-500 animate-in zoom-in-95">
-          <div className="relative h-24 w-72 sm:h-28 sm:w-88 filter drop-shadow-[0_0_25px_rgba(57,181,74,0.6)]">
+          <div className="relative h-28 w-80 sm:h-36 sm:w-96">
             <Image
               src="/logo.png"
-              alt="Padmasri Global Exports Official Emblem"
+              alt="Padmasri Global Exports Official Logo"
               fill
-              sizes="352px"
-              className="object-contain filter brightness-0 invert"
+              sizes="384px"
+              className="object-contain mix-blend-multiply"
               priority
             />
           </div>
@@ -40,16 +40,16 @@ export default function Preloader() {
 
         {/* Brand Tagline */}
         <div className="space-y-1.5 pt-2">
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-widest uppercase">
+          <h2 className="text-xl sm:text-2xl font-black text-[#063B52] tracking-widest uppercase">
             PADMASRI GLOBAL EXPORTS
           </h2>
-          <p className="text-xs sm:text-sm text-[#39B54A] font-extrabold uppercase tracking-widest">
+          <p className="text-xs sm:text-sm text-[#169447] font-extrabold uppercase tracking-widest">
             Connecting Quality Indian Products With Global Markets
           </p>
         </div>
 
         {/* Animated Loading Bar */}
-        <div className="w-48 sm:w-64 h-1.5 bg-white/10 rounded-full overflow-hidden relative">
+        <div className="w-48 sm:w-64 h-1.5 bg-gray-200 rounded-full overflow-hidden relative">
           <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#169447] via-[#39B54A] to-[#087EA4] rounded-full animate-[loading-bar_1.1s_ease-in-out_infinite]" />
         </div>
       </div>

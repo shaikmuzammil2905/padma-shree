@@ -11,7 +11,7 @@ interface HeroProps {
 export default function Hero({ onOpenEnquiry }: HeroProps) {
   return (
     <section id="hero" className="relative min-h-[92vh] flex items-center pt-28 pb-20 overflow-hidden bg-[#063B52]">
-      {/* Background Image */}
+      {/* Background Image - Clean, vivid container shipping vessel with 100% clarity & ZERO dark background shadow overlays */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-bg.jpg"
@@ -19,16 +19,16 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-95 scale-105 transition-transform duration-1000"
+          className="object-cover object-center opacity-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#063B52]/80 via-[#063B52]/40 to-transparent sm:from-[#063B52]/75 sm:via-[#063B52]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#063B52] via-transparent to-black/20" />
+        {/* Subtle, minimal backdrop mask for mobile readability without obscuring shipping vessel picture */}
+        <div className="absolute inset-0 bg-[#063B52]/35 sm:bg-[#063B52]/25" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
         <div className="max-w-3xl space-y-6 sm:space-y-8">
           {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 bg-[#063B52]/80 border border-[#39B54A] px-4 py-2 rounded-full backdrop-blur-md shadow-lg">
+          <div className="inline-flex items-center gap-2 bg-[#063B52]/85 border border-[#39B54A] px-4 py-2 rounded-full backdrop-blur-md shadow-xl">
             <span className="w-2.5 h-2.5 rounded-full bg-[#39B54A] animate-pulse" />
             <span className="text-xs sm:text-sm font-extrabold tracking-wider text-green-300 uppercase">
               GLOBAL EXPORTS • TRUSTED QUALITY • WORLDWIDE REACH
@@ -38,7 +38,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
             Bringing India's Finest{" "}
-            <span className="text-[#39B54A] inline-block relative drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            <span className="text-[#39B54A] inline-block relative drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               Products
               <svg
                 className="absolute -bottom-2 left-0 w-full h-3 text-[#39B54A]"
@@ -60,7 +60,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
             <Link
               href="/products"
-              className="inline-flex items-center justify-center bg-[#169447] hover:bg-[#39B54A] text-white text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 shadow-xl hover:shadow-green-500/40 hover:scale-105 active:scale-95 gap-3"
+              className="inline-flex items-center justify-center bg-[#169447] hover:bg-[#39B54A] text-white text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 shadow-2xl hover:shadow-green-500/40 hover:scale-105 active:scale-95 gap-3"
             >
               <span>Explore Products</span>
               <ArrowRight className="w-5 h-5" />
@@ -68,7 +68,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
             <Link
               href="/enquiry"
-              className="inline-flex items-center justify-center bg-[#063B52]/90 hover:bg-[#087EA4] text-white border-2 border-white/80 text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 gap-3"
+              className="inline-flex items-center justify-center bg-[#063B52]/90 hover:bg-[#087EA4] text-white border-2 border-white/80 text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 backdrop-blur-md shadow-xl hover:scale-105 active:scale-95 gap-3"
             >
               <span>Request an Enquiry</span>
               <ArrowRight className="w-5 h-5 text-[#39B54A]" />
@@ -76,18 +76,18 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           </div>
 
           {/* Trust Indicators */}
-          <div className="pt-6 border-t border-white/20 grid grid-cols-1 sm:grid-cols-3 gap-4 text-white">
-            <div className="flex items-center gap-3 bg-[#063B52]/80 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-lg">
+          <div className="pt-6 border-t border-white/30 grid grid-cols-1 sm:grid-cols-3 gap-4 text-white">
+            <div className="flex items-center gap-3 bg-[#063B52]/85 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-xl">
               <ShieldCheck className="w-6 h-6 text-[#39B54A] shrink-0" />
               <span className="text-xs sm:text-sm font-bold">Quality Sourcing</span>
             </div>
 
-            <div className="flex items-center gap-3 bg-[#063B52]/80 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-lg">
+            <div className="flex items-center gap-3 bg-[#063B52]/85 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-xl">
               <Truck className="w-6 h-6 text-[#39B54A] shrink-0" />
               <span className="text-xs sm:text-sm font-bold">Reliable Supply</span>
             </div>
 
-            <div className="flex items-center gap-3 bg-[#063B52]/80 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-lg">
+            <div className="flex items-center gap-3 bg-[#063B52]/85 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-xl">
               <Globe2 className="w-6 h-6 text-[#39B54A] shrink-0" />
               <span className="text-xs sm:text-sm font-bold">Global Trade</span>
             </div>
