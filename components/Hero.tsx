@@ -10,7 +10,7 @@ interface HeroProps {
 export default function Hero({ onOpenEnquiry }: HeroProps) {
   return (
     <section id="hero" className="relative min-h-[92vh] flex items-center pt-28 pb-20 overflow-hidden bg-[#063B52]">
-      {/* Background Image - Clear, vivid shipping vessel with subtle vignette for text legibility */}
+      {/* Background Image - Clear, vivid shipping vessel */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-bg.jpg"
@@ -18,11 +18,11 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-90 scale-105 transition-transform duration-1000"
+          className="object-cover object-center opacity-95 scale-105 transition-transform duration-1000"
         />
-        {/* Subtle gradient gradient overlay on left for text contrast while keeping ship clearly visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#063B52]/90 via-[#063B52]/60 to-transparent sm:from-[#063B52]/85 sm:via-[#063B52]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#063B52] via-transparent to-black/30" />
+        {/* Soft, subtle left gradient to ensure text readability without hiding ship */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#063B52]/80 via-[#063B52]/40 to-transparent sm:from-[#063B52]/75 sm:via-[#063B52]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#063B52] via-transparent to-black/20" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
@@ -51,8 +51,8 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
             to the World
           </h1>
 
-          {/* Description */}
-          <p className="text-base sm:text-xl text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] max-w-2xl bg-[#063B52]/40 p-4 rounded-xl backdrop-blur-sm border border-white/10">
+          {/* Description - NO BACKGROUND SHADOW / NO DARK BOX BACKGROUND! */}
+          <p className="text-base sm:text-xl text-white font-semibold leading-relaxed drop-shadow-[0_3px_10px_rgba(0,0,0,0.95)] max-w-2xl">
             Padmasri Global Exports specializes in the export and import of carefully sourced products, including Kewda Ruh, Frozen Chicken and Seafood, with a commitment to quality, reliability and timely global delivery.
           </p>
 
