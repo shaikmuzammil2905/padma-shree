@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Award, Globe, PackageCheck, MapPin } from "lucide-react";
+import { Award, Globe, PackageCheck, MapPin, CheckCircle2 } from "lucide-react";
 
 export default function About() {
   const infoCards = [
@@ -33,7 +33,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column: Visual Composition with Logo Badge */}
           <div className="relative">
-            <div className="relative h-[360px] sm:h-[480px] w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100 group">
+            <div className="relative h-[380px] sm:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-100 group">
               <Image
                 src="/images/about-montage.jpg"
                 alt="Padmasri Global Exports Maritime & Product Sourcing"
@@ -41,27 +41,28 @@ export default function About() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#063B52]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#063B52]/90 via-[#063B52]/20 to-transparent" />
               
-              {/* Official Logo Watermark Card Overlay - Left aligned logo, Right aligned text, Seamless white blend */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl border border-gray-200 flex items-center justify-between gap-4">
-                {/* Left Aligned Logo with mix-blend-multiply to eliminate patch work */}
-                <div className="relative h-12 w-36 sm:h-14 sm:w-44 shrink-0">
+              {/* Grand Glassmorphic Logo Badge Overlay - Zero White Patch Work */}
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-[#063B52]/90 backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-2xl border border-[#39B54A]/40 flex items-center justify-between gap-4">
+                {/* Left Aligned Logo with crisp inverted filter for dark backdrop */}
+                <div className="relative h-12 w-36 sm:h-14 sm:w-44 shrink-0 filter drop-shadow-[0_0_12px_rgba(57,181,74,0.4)]">
                   <Image
                     src="/logo.png"
                     alt="Padmasri Official Emblem"
                     fill
                     sizes="(max-width: 640px) 144px, 176px"
-                    className="object-contain object-left mix-blend-multiply"
+                    className="object-contain object-left filter brightness-0 invert"
                   />
                 </div>
 
-                {/* Right Aligned Registered Exporter Text */}
-                <div className="text-right">
-                  <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-[#169447] block">
-                    REGISTERED EXPORTER
-                  </span>
-                  <span className="text-[11px] sm:text-xs font-bold text-gray-700 block mt-0.5">
+                {/* Right Aligned Attractive Text */}
+                <div className="text-right space-y-0.5">
+                  <div className="inline-flex items-center gap-1.5 text-[#39B54A] text-[11px] sm:text-xs font-black uppercase tracking-widest bg-black/30 px-2.5 py-1 rounded-md border border-[#39B54A]/30">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>REGISTERED EXPORTER</span>
+                  </div>
+                  <span className="text-xs sm:text-sm font-extrabold text-white block pt-1">
                     Odisha, India
                   </span>
                 </div>
