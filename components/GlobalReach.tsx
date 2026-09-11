@@ -1,111 +1,275 @@
 "use client";
 
-import { Globe, MapPin, Compass, Anchor } from "lucide-react";
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { MapPin, Globe, Compass, Anchor, X, CheckCircle2, ArrowRight } from "lucide-react";
+
+interface TradeRegion {
+  id: string;
+  name: string;
+  coords: { x: number; y: number }; // percentage coords on map canvas
+  arcPath: string; // SVG path d attribute
+  hubDetails: string;
+  popularProducts: string[];
+}
 
 export default function GlobalReach() {
+  const [activeRegion, setActiveRegion] = useState<TradeRegion | null>(null);
+
+  const tradeRegions: TradeRegion[] = [
+    {
+      id: "middle-east",
+      name: "Middle East & Gulf (GCC)",
+      coords: { x: 58, y: 38 },
+      arcPath: "M 67.5 44.5 Q 62 38 58 38",
+      hubDetails: "Major trade corridor for Kewda Ruh natural attars, premium frozen poultry, and seafood.",
+      popularProducts: ["Kewda Ruh Natural Extract", "Frozen Dressed Poultry", "Vannamei Shrimp"],
+    },
+    {
+      id: "europe",
+      name: "European Union",
+      coords: { x: 50, y: 22 },
+      arcPath: "M 67.5 44.5 Q 58 28 50 22",
+      hubDetails: "High-grade essential oil extracts for perfumery & sustainable marine exports.",
+      popularProducts: ["Kewda Ruh Perfumery Grade", "Black Tiger Prawns", "Ocean Fish"],
+    },
+    {
+      id: "north-america",
+      name: "North America",
+      coords: { x: 22, y: 28 },
+      arcPath: "M 67.5 44.5 Q 40 12 22 28",
+      hubDetails: "Direct B2B wholesale supply of frozen seafood products and specialized botanical extracts.",
+      popularProducts: ["Frozen Shrimp & Prawns", "Poultry Cuts", "Essential Extracts"],
+    },
+    {
+      id: "southeast-asia",
+      name: "Southeast Asia & Far East",
+      coords: { x: 78, y: 52 },
+      arcPath: "M 67.5 44.5 Q 73 48 78 52",
+      hubDetails: "Rapid marine cargo routes connecting Bay of Bengal fisheries to regional food processing hubs.",
+      popularProducts: ["Pomfret & Ocean Catches", "Frozen Chicken Parts"],
+    },
+    {
+      id: "australia",
+      name: "Australia & Oceania",
+      coords: { x: 86, y: 72 },
+      arcPath: "M 67.5 44.5 Q 80 62 86 72",
+      hubDetails: "Long-haul containerized reefer shipments for wholesale food importers.",
+      popularProducts: ["Frozen Seafood Assortment", "Kewda Aroma Extract"],
+    },
+    {
+      id: "africa",
+      name: "Africa & Indian Ocean",
+      coords: { x: 52, y: 62 },
+      arcPath: "M 67.5 44.5 Q 58 55 52 62",
+      hubDetails: "Dependable bulk exports of frozen food supplies and aromatic trade products.",
+      popularProducts: ["Frozen Poultry Bulk", "Fresh Water Fish"],
+    },
+  ];
+
   return (
-    <section className="py-20 bg-[#063B52] text-white relative overflow-hidden">
-      {/* Subtle Grid Background Pattern */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
+    <section id="global-reach" className="py-20 bg-[#063B52] text-white relative overflow-hidden">
+      {/* Background Subtle Gradient Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#087EA4]/20 via-[#063B52] to-[#032535]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
-          <span className="text-xs sm:text-sm font-bold tracking-wider text-[#39B54A] uppercase bg-[#169447]/20 border border-[#39B54A]/30 px-3.5 py-1.5 rounded-full inline-block">
-            GLOBAL REACH
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-12"
+        >
+          <span className="text-xs sm:text-sm font-bold tracking-wider text-[#39B54A] uppercase bg-[#169447]/20 border border-[#39B54A]/40 px-4 py-1.5 rounded-full inline-block">
+            FROM INDIA TO GLOBAL MARKETS
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
+          <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight">
             Building Global Connections Through Trusted Trade
           </h2>
           <p className="text-[#EAF7FA]/80 text-base sm:text-lg">
             India → International Markets
           </p>
-        </div>
+        </motion.div>
 
-        {/* Interactive World Trade Map Illustration Box */}
-        <div className="relative bg-[#032535] rounded-3xl p-6 sm:p-12 border border-white/10 shadow-2xl overflow-hidden">
-          {/* World Map SVG Canvas */}
-          <div className="relative min-h-[320px] sm:min-h-[420px] flex items-center justify-center">
-            {/* World Map Background Vector SVG */}
+        {/* Grand Realistic Satellite World Map Canvas Container */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative bg-[#032535] rounded-3xl border border-white/20 shadow-2xl overflow-hidden group"
+        >
+          {/* Satellite Background Map Image */}
+          <div className="relative w-full aspect-[16/9] min-h-[360px] sm:min-h-[540px]">
+            <Image
+              src="/images/world-map-satellite.jpg"
+              alt="Padmasri Global Exports Satellite World Map Network"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center filter brightness-110 contrast-105"
+            />
+            {/* Dark vignette gradient for cinematic feel */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#032535] via-transparent to-black/20" />
+
+            {/* SVG Layer for Animated Connection Lines */}
             <svg
-              className="w-full h-full text-white/10"
-              viewBox="0 0 1000 500"
-              fill="currentColor"
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
             >
-              {/* Simplified World Continents Map paths */}
-              <path d="M150,120 Q200,80 300,100 T400,160 T250,250 T150,180 Z" /> {/* North America */}
-              <path d="M300,280 Q350,260 380,320 T340,420 T280,360 Z" /> {/* South America */}
-              <path d="M480,100 Q550,70 620,110 T580,220 T480,180 Z" /> {/* Europe */}
-              <path d="M480,220 Q560,200 600,270 T540,400 T460,300 Z" /> {/* Africa */}
-              <path d="M620,100 Q780,60 880,120 T820,280 T680,220 Z" /> {/* Asia */}
-              <path d="M780,340 Q840,320 880,360 T820,440 T760,400 Z" /> {/* Australia */}
+              {tradeRegions.map((region) => (
+                <g key={region.id}>
+                  {/* Glowing Background Arc */}
+                  <path
+                    d={region.arcPath}
+                    fill="none"
+                    stroke="#39B54A"
+                    strokeWidth="0.8"
+                    strokeDasharray="2 2"
+                    className="opacity-70"
+                  />
+                  {/* Animated Pulse Flow Arc */}
+                  <motion.path
+                    d={region.arcPath}
+                    fill="none"
+                    stroke="#00FF66"
+                    strokeWidth="1.2"
+                    strokeDasharray="1 3"
+                    initial={{ strokeDashoffset: 20 }}
+                    animate={{ strokeDashoffset: 0 }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                </g>
+              ))}
             </svg>
 
-            {/* India Export Hub Origin Pulse Marker */}
-            <div className="absolute top-[42%] left-[68%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer">
+            {/* India Origin Hub Pulse Node Marker */}
+            <div
+              className="absolute top-[44.5%] left-[67.5%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center cursor-pointer"
+              onClick={() => setActiveRegion(null)}
+            >
               <div className="relative">
-                <span className="absolute -inset-3 rounded-full bg-[#39B54A] opacity-75 animate-ping" />
-                <div className="w-8 h-8 rounded-full bg-[#169447] border-2 border-white flex items-center justify-center text-white shadow-xl relative z-10">
+                <span className="absolute -inset-4 rounded-full bg-[#39B54A] opacity-75 animate-ping" />
+                <span className="absolute -inset-2 rounded-full bg-[#169447] opacity-90 animate-pulse" />
+                <div className="w-8 h-8 rounded-full bg-[#169447] border-2 border-white flex items-center justify-center text-white shadow-2xl relative z-10 hover:scale-110 transition-transform">
                   <MapPin className="w-4 h-4 fill-white" />
                 </div>
               </div>
 
-              <div className="mt-2 bg-white text-[#063B52] font-black text-xs px-3 py-1 rounded-md shadow-lg border border-gray-100 flex items-center gap-1.5 whitespace-nowrap">
-                <span className="w-2 h-2 rounded-full bg-[#169447]" />
+              <div className="mt-2 bg-[#169447] text-white font-extrabold text-xs px-3 py-1 rounded-md shadow-xl border border-white/40 flex items-center gap-1.5 whitespace-nowrap">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 <span>India (Origin Hub)</span>
               </div>
             </div>
 
-            {/* Trade Route Connection Arc Lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 500">
-              <path
-                d="M680,210 Q 500,100 250,160"
-                fill="none"
-                stroke="#39B54A"
-                strokeWidth="2"
-                strokeDasharray="6 6"
-                className="opacity-70 animate-pulse"
-              />
-              <path
-                d="M680,210 Q 550,220 540,300"
-                fill="none"
-                stroke="#087EA4"
-                strokeWidth="2"
-                strokeDasharray="6 6"
-                className="opacity-70 animate-pulse"
-              />
-              <path
-                d="M680,210 Q 750,150 820,180"
-                fill="none"
-                stroke="#39B54A"
-                strokeWidth="2"
-                strokeDasharray="6 6"
-                className="opacity-70 animate-pulse"
-              />
-            </svg>
+            {/* Interactive Destination Nodes */}
+            {tradeRegions.map((region) => (
+              <div
+                key={region.id}
+                style={{ top: `${region.coords.y}%`, left: `${region.coords.x}%` }}
+                className="absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group/node"
+                onClick={() => setActiveRegion(region)}
+              >
+                <div className="relative flex items-center justify-center">
+                  <span className="absolute -inset-2 rounded-full bg-[#087EA4] opacity-50 group-hover/node:animate-ping" />
+                  <div className="w-6 h-6 rounded-full bg-[#087EA4] border-2 border-white text-white flex items-center justify-center shadow-lg group-hover/node:scale-125 group-hover/node:bg-[#39B54A] transition-all">
+                    <span className="w-2 h-2 rounded-full bg-white" />
+                  </div>
+                </div>
+
+                {/* Node Label */}
+                <div className="hidden sm:block mt-1 bg-[#063B52]/90 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-0.5 rounded-md border border-white/20 whitespace-nowrap group-hover/node:border-[#39B54A] transition-colors">
+                  {region.name}
+                </div>
+              </div>
+            ))}
+
+            {/* Interactive Region Details Popup Modal */}
+            <AnimatePresence>
+              {activeRegion && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                  className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 bg-[#063B52]/95 backdrop-blur-md p-6 rounded-2xl border border-[#39B54A]/50 shadow-2xl z-30 space-y-4"
+                >
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-5 h-5 text-[#39B54A]" />
+                      <h4 className="font-extrabold text-base text-white">
+                        {activeRegion.name}
+                      </h4>
+                    </div>
+                    <button
+                      onClick={() => setActiveRegion(null)}
+                      className="p-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  <p className="text-xs text-[#EAF7FA]/90 leading-relaxed">
+                    {activeRegion.hubDetails}
+                  </p>
+
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#39B54A] block mb-2">
+                      Key Export Commodities:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeRegion.popularProducts.map((prod, i) => (
+                        <span
+                          key={i}
+                          className="bg-[#169447]/30 text-green-200 text-[11px] font-semibold px-2.5 py-1 rounded-md border border-[#39B54A]/30 flex items-center gap-1"
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-[#39B54A]" />
+                          {prod}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a
+                    href="#enquiry"
+                    onClick={() => setActiveRegion(null)}
+                    className="mt-2 w-full py-2 bg-[#169447] hover:bg-[#39B54A] text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1.5 shadow-md"
+                  >
+                    <span>Request Quotation for {activeRegion.name}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* Trade Connection Cards */}
-          <div className="mt-8 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          {/* Bottom Trade Metrics Strip */}
+          <div className="p-6 bg-[#063B52] border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <Compass className="w-6 h-6 text-[#39B54A] mx-auto mb-2" />
               <h4 className="font-bold text-sm text-white">Strategic Location</h4>
-              <p className="text-xs text-[#EAF7FA]/70 mt-1">Coastal Odisha port access</p>
+              <p className="text-xs text-[#EAF7FA]/70 mt-1">Direct access to Odisha maritime shipping ports</p>
             </div>
 
             <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <Globe className="w-6 h-6 text-[#087EA4] mx-auto mb-2" />
               <h4 className="font-bold text-sm text-white">International Reach</h4>
-              <p className="text-xs text-[#EAF7FA]/70 mt-1">Seamless sea & air routes</p>
+              <p className="text-xs text-[#EAF7FA]/70 mt-1">Seamless sea & air cargo connections worldwide</p>
             </div>
 
             <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <Anchor className="w-6 h-6 text-[#39B54A] mx-auto mb-2" />
               <h4 className="font-bold text-sm text-white">Cold-Chain Sea Freight</h4>
-              <p className="text-xs text-[#EAF7FA]/70 mt-1">Temperature-monitored reefers</p>
+              <p className="text-xs text-[#EAF7FA]/70 mt-1">Continuous sub-zero reefer container shipments</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

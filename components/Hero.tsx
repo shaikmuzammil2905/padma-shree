@@ -9,37 +9,39 @@ interface HeroProps {
 
 export default function Hero({ onOpenEnquiry }: HeroProps) {
   return (
-    <section id="hero" className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden bg-[#063B52]">
-      {/* Background Image with Dark Navy Gradient Overlay */}
+    <section id="hero" className="relative min-h-[92vh] flex items-center pt-28 pb-20 overflow-hidden bg-[#063B52]">
+      {/* Background Image - Clear, vivid shipping vessel with subtle vignette for text legibility */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-bg.jpg"
-          alt="International Export Container Shipping"
+          alt="International Export Container Shipping Vessel"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-35"
+          className="object-cover object-center opacity-90 scale-105 transition-transform duration-1000"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#063B52] via-[#063B52]/90 to-[#063B52]/70" />
+        {/* Subtle gradient gradient overlay on left for text contrast while keeping ship clearly visible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#063B52]/90 via-[#063B52]/60 to-transparent sm:from-[#063B52]/85 sm:via-[#063B52]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#063B52] via-transparent to-black/30" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
         <div className="max-w-3xl space-y-6 sm:space-y-8">
           {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 bg-[#169447]/20 border border-[#39B54A]/40 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-[#39B54A] animate-pulse" />
-            <span className="text-xs sm:text-sm font-semibold tracking-wider text-green-300 uppercase">
+          <div className="inline-flex items-center gap-2 bg-[#063B52]/80 border border-[#39B54A] px-4 py-2 rounded-full backdrop-blur-md shadow-lg">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#39B54A] animate-pulse" />
+            <span className="text-xs sm:text-sm font-extrabold tracking-wider text-green-300 uppercase">
               GLOBAL EXPORTS • TRUSTED QUALITY • WORLDWIDE REACH
             </span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight sm:leading-none tracking-tight">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
             Bringing India's Finest{" "}
-            <span className="text-[#39B54A] inline-block relative">
+            <span className="text-[#39B54A] inline-block relative drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               Products
               <svg
-                className="absolute -bottom-2 left-0 w-full h-3 text-[#39B54A]/40"
+                className="absolute -bottom-2 left-0 w-full h-3 text-[#39B54A]"
                 viewBox="0 0 100 20"
                 preserveAspectRatio="none"
               >
@@ -50,7 +52,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           </h1>
 
           {/* Description */}
-          <p className="text-base sm:text-lg lg:text-xl text-gray-200 leading-relaxed font-normal">
+          <p className="text-base sm:text-xl text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] max-w-2xl bg-[#063B52]/40 p-4 rounded-xl backdrop-blur-sm border border-white/10">
             Padmasri Global Exports specializes in the export and import of carefully sourced products, including Kewda Ruh, Frozen Chicken and Seafood, with a commitment to quality, reliability and timely global delivery.
           </p>
 
@@ -58,7 +60,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
             <a
               href="#products"
-              className="inline-flex items-center justify-center bg-[#169447] hover:bg-[#39B54A] text-white text-base font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg hover:shadow-green-900/30 hover:scale-[1.02] active:scale-95 gap-2"
+              className="inline-flex items-center justify-center bg-[#169447] hover:bg-[#39B54A] text-white text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 shadow-xl hover:shadow-green-500/40 hover:scale-105 active:scale-95 gap-3"
             >
               <span>Explore Products</span>
               <ArrowRight className="w-5 h-5" />
@@ -66,7 +68,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
             <button
               onClick={onOpenEnquiry}
-              className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/30 text-base font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 backdrop-blur-md hover:scale-[1.02] active:scale-95 gap-2"
+              className="inline-flex items-center justify-center bg-[#063B52]/90 hover:bg-[#087EA4] text-white border-2 border-white/80 text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 gap-3"
             >
               <span>Request an Enquiry</span>
               <ArrowRight className="w-5 h-5 text-[#39B54A]" />
@@ -74,20 +76,20 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           </div>
 
           {/* Trust Indicators */}
-          <div className="pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 text-white/90">
-            <div className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10 backdrop-blur-sm">
+          <div className="pt-6 border-t border-white/20 grid grid-cols-1 sm:grid-cols-3 gap-4 text-white">
+            <div className="flex items-center gap-3 bg-[#063B52]/80 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-lg">
               <ShieldCheck className="w-6 h-6 text-[#39B54A] shrink-0" />
-              <span className="text-xs sm:text-sm font-medium">Quality Sourcing</span>
+              <span className="text-xs sm:text-sm font-bold">Quality Sourcing</span>
             </div>
 
-            <div className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center gap-3 bg-[#063B52]/80 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-lg">
               <Truck className="w-6 h-6 text-[#39B54A] shrink-0" />
-              <span className="text-xs sm:text-sm font-medium">Reliable Supply</span>
+              <span className="text-xs sm:text-sm font-bold">Reliable Supply</span>
             </div>
 
-            <div className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center gap-3 bg-[#063B52]/80 p-3.5 rounded-xl border border-white/20 backdrop-blur-md shadow-lg">
               <Globe2 className="w-6 h-6 text-[#39B54A] shrink-0" />
-              <span className="text-xs sm:text-sm font-medium">Global Trade</span>
+              <span className="text-xs sm:text-sm font-bold">Global Trade</span>
             </div>
           </div>
         </div>
