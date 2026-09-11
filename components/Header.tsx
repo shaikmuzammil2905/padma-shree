@@ -39,21 +39,21 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg py-3"
-          : "bg-white py-4 border-b border-gray-100"
+          ? "bg-white/95 backdrop-blur-md shadow-lg py-2.5"
+          : "bg-white py-3 border-b border-gray-100"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Official Logo - Increased Size & Clean Transparent Fit */}
-          <Link href="#hero" className="flex items-center group py-1">
-            <div className="relative h-16 w-60 sm:h-20 sm:w-72 transition-transform group-hover:scale-105">
+          {/* Official Logo - Blended seamlessly with white background */}
+          <Link href="#hero" className="flex items-center group py-0.5">
+            <div className="relative h-14 w-52 sm:h-18 sm:w-64 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Padmasri Global Exports Official Logo"
                 fill
-                sizes="(max-width: 640px) 240px, 288px"
-                className="object-contain object-left"
+                sizes="(max-width: 640px) 208px, 256px"
+                className="object-contain object-left mix-blend-multiply"
                 priority
               />
             </div>
@@ -112,7 +112,7 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[76px] bg-white border-b border-gray-200 shadow-2xl py-6 px-6 space-y-4 animate-in slide-in-from-top duration-200">
+        <div className="lg:hidden fixed inset-x-0 top-[68px] bg-white border-b border-gray-200 shadow-2xl py-6 px-6 space-y-4 animate-in slide-in-from-top duration-200">
           <nav className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <a

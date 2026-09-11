@@ -43,22 +43,27 @@ export default function About() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#063B52]/80 via-transparent to-transparent" />
               
-              {/* Official Logo Watermark Card Overlay */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
-                <div className="relative h-12 w-44">
+              {/* Official Logo Watermark Card Overlay - Left aligned logo, Right aligned text, Seamless white blend */}
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl border border-gray-200 flex items-center justify-between gap-4">
+                {/* Left Aligned Logo with mix-blend-multiply to eliminate patch work */}
+                <div className="relative h-12 w-36 sm:h-14 sm:w-44 shrink-0">
                   <Image
                     src="/logo.png"
                     alt="Padmasri Official Emblem"
                     fill
-                    sizes="176px"
-                    className="object-contain"
+                    sizes="(max-width: 640px) 144px, 176px"
+                    className="object-contain object-left mix-blend-multiply"
                   />
                 </div>
-                <div className="hidden sm:block text-right">
-                  <span className="text-xs uppercase tracking-wider text-[#169447] font-bold block">
+
+                {/* Right Aligned Registered Exporter Text */}
+                <div className="text-right">
+                  <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-[#169447] block">
                     REGISTERED EXPORTER
                   </span>
-                  <span className="text-xs text-gray-500 font-medium">Odisha, India</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-gray-700 block mt-0.5">
+                    Odisha, India
+                  </span>
                 </div>
               </div>
             </div>

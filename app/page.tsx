@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Preloader from "@/components/Preloader";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -30,6 +31,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#F8FAF8] relative">
+      {/* Flash Preloader Screen */}
+      <Preloader />
+
       {/* Sticky Top Header */}
       <Header onOpenEnquiry={() => handleOpenEnquiry()} />
 
