@@ -2,99 +2,18 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Sparkles } from "lucide-react";
-import ProductDetailModal, { ProductItem } from "./ProductDetailModal";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import ProductDetailModal from "./ProductDetailModal";
+import { productList, ProductItem } from "@/data/products";
 
 interface ProductsProps {
-  onOpenEnquiry: (productName?: string) => void;
+  onOpenEnquiry?: (productName?: string) => void;
+  showAll?: boolean;
 }
 
-export default function Products({ onOpenEnquiry }: ProductsProps) {
+export default function Products({ onOpenEnquiry, showAll = true }: ProductsProps) {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
-
-  const productList: ProductItem[] = [
-    {
-      id: "kewda-ruh",
-      name: "Kewda Ruh",
-      category: "Aromatic Essential Extract",
-      image: "/images/kewda-ruh.jpg",
-      description:
-        "Premium Kewda Ruh sourced with attention to fragrance, purity and quality, suitable for international buyers seeking authentic Indian aromatic products.",
-      fullDetails:
-        "Kewda Ruh (Pandanus odorifer extract) is one of India's most prized natural aromatic concentrates, distilled traditionally from fragrant male screwpine flowers in Odisha's coastal belt. Recognized globally for its enchanting botanical aroma, high purity, and long-lasting scent profile.",
-      keyHighlights: [
-        "100% Pure Natural Steam Distilled Extract",
-        "Authentic Odisha Geographical Origin Sourcing",
-        "Rich Floral Aroma Profile for High-End Perfumery",
-        "Free from Artificial Additives or Synthetics"
-      ],
-      applications: [
-        "Natural Perfumery & Fine Fragrance",
-        "Attar & Traditional Fragrance Formulations",
-        "Aromatherapy & Premium Cosmetic Formulations",
-        "Culinary & Confectionery Flavoring"
-      ],
-      handlingInfo: [
-        "Packaged in airtight, food-grade aluminum bottles or amber glass vials.",
-        "Stored in cool, dry climate-controlled environments to preserve aroma profile.",
-        "Sealed with tamper-evident export packaging."
-      ]
-    },
-    {
-      id: "frozen-chicken",
-      name: "Frozen Chicken",
-      category: "Poultry & Cold-Chain Supply",
-      image: "/images/frozen-chicken.jpg",
-      description:
-        "Reliable frozen chicken products sourced and handled with a focus on hygiene, quality and dependable cold-chain supply.",
-      fullDetails:
-        "Our frozen chicken exports are processed in modern, hygienic food facilities adhering strictly to international food safety and veterinary standards. We offer whole dressed chicken, breast fillets, drumsticks, and wings tailored to commercial buyer specifications.",
-      keyHighlights: [
-        "Dressed & Cut Dressed Poultry Options",
-        "Hygienically Processed Under Cold Chain Controls",
-        "Clean, Skin-On and Skin-Off Custom Cuts Available",
-        "Zero Added Water Weight / Blast Frozen Quality"
-      ],
-      applications: [
-        "Wholesale Foodservice Distributors",
-        "Commercial Restaurant & Catering Operations",
-        "Hotel & Institutional Culinary Supply",
-        "Retail & Supermarket Butchery Chains"
-      ],
-      handlingInfo: [
-        "Blast frozen at -35°C to preserve cellular integrity and texture.",
-        "Stored & shipped at continuous sub-zero temperatures (-18°C or colder).",
-        "Export packed in heavy-duty food grade poly-bags and corrugated master cartons."
-      ]
-    },
-    {
-      id: "seafood",
-      name: "Seafood",
-      category: "Fresh & Frozen Marine Produce",
-      image: "/images/seafood.jpg",
-      description:
-        "Quality seafood products prepared for international trade with careful sourcing, handling and packaging requirements.",
-      fullDetails:
-        "Sourced from the pristine waters of Odisha's coastline and sustainable aquaculture farms, our seafood export portfolio includes premium White Prawns (Vannamei), Black Tiger Shrimp, Indian Pomfret, and ocean-fresh catches. Harvested with care to ensure natural flavor and firm texture.",
-      keyHighlights: [
-        "Fresh Coastal & Farm-Raised Prawn Varieties",
-        "Individually Quick Frozen (IQF) & Block Frozen",
-        "Careful Sorting by Count, Weight & Grade",
-        "Rigorous Sensory & Temperature Quality Checks"
-      ],
-      applications: [
-        "International Seafood Importers & Distributors",
-        "Seafood Specialty Restaurants & Hotel Chains",
-        "Food Processing & Value-Add Manufacturing",
-        "Supermarket Seafood Counters"
-      ],
-      handlingInfo: [
-        "Quick frozen immediately after harvesting to retain peak fresh taste.",
-        "Shipped in temperature-monitored refrigerated marine containers (Reefers).",
-        "Protected by protective water glaze to prevent freezer burn during long voyages."
-      ]
-    }
-  ];
 
   return (
     <section id="products" className="py-20 bg-[#F8FAF8]">
@@ -120,7 +39,7 @@ export default function Products({ onOpenEnquiry }: ProductsProps) {
               className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-100 transition-all duration-300 flex flex-col group hover:-translate-y-1.5"
             >
               {/* Product Image Container */}
-              <div className="relative h-64 w-full bg-gray-100 overflow-hidden">
+              <Link href={`/products/${product.id}`} className="relative h-64 w-full bg-gray-100 overflow-hidden block">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -131,34 +50,36 @@ export default function Products({ onOpenEnquiry }: ProductsProps) {
                 <div className="absolute top-4 left-4 bg-[#063B52]/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20">
                   {product.category}
                 </div>
-              </div>
+              </Link>
 
               {/* Product Card Content */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <h3 className="text-xl font-extrabold text-[#063B52] group-hover:text-[#169447] transition-colors">
-                    {product.name}
-                  </h3>
+                  <Link href={`/products/${product.id}`}>
+                    <h3 className="text-xl font-extrabold text-[#063B52] group-hover:text-[#169447] transition-colors">
+                      {product.name}
+                    </h3>
+                  </Link>
                   <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                     {product.description}
                   </p>
                 </div>
 
                 <div className="pt-2 border-t border-gray-100 flex items-center justify-between">
-                  <button
-                    onClick={() => setSelectedProduct(product)}
+                  <Link
+                    href={`/products/${product.id}`}
                     className="inline-flex items-center text-sm font-bold text-[#169447] hover:text-[#39B54A] transition-colors gap-1.5 group/btn"
                   >
-                    <span>Explore Product</span>
+                    <span>View Product Details</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                  </button>
+                  </Link>
 
-                  <button
-                    onClick={() => onOpenEnquiry(product.name)}
+                  <Link
+                    href={`/enquiry?product=${encodeURIComponent(product.name)}`}
                     className="text-xs font-semibold text-[#087EA4] hover:text-[#063B52] bg-[#EAF7FA] px-3 py-1.5 rounded-md transition-colors"
                   >
                     Enquire Now
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -166,15 +87,19 @@ export default function Products({ onOpenEnquiry }: ProductsProps) {
         </div>
       </div>
 
-      {/* Product Detail Modal Interaction */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-        onRequestQuote={(prodName) => {
-          setSelectedProduct(null);
-          onOpenEnquiry(prodName);
-        }}
-      />
+      {/* Product Detail Modal Interaction if triggered */}
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          onRequestQuote={(prodName) => {
+            setSelectedProduct(null);
+            if (onOpenEnquiry) {
+              onOpenEnquiry(prodName);
+            }
+          }}
+        />
+      )}
     </section>
   );
 }

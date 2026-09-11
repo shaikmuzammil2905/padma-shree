@@ -1,16 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, ShieldCheck, Truck, Globe2 } from "lucide-react";
 
 interface HeroProps {
-  onOpenEnquiry: () => void;
+  onOpenEnquiry?: () => void;
 }
 
 export default function Hero({ onOpenEnquiry }: HeroProps) {
   return (
     <section id="hero" className="relative min-h-[92vh] flex items-center pt-28 pb-20 overflow-hidden bg-[#063B52]">
-      {/* Background Image - Clear, vivid shipping vessel */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-bg.jpg"
@@ -20,7 +21,6 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           sizes="100vw"
           className="object-cover object-center opacity-95 scale-105 transition-transform duration-1000"
         />
-        {/* Soft, subtle left gradient to ensure text readability without hiding ship */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#063B52]/80 via-[#063B52]/40 to-transparent sm:from-[#063B52]/75 sm:via-[#063B52]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#063B52] via-transparent to-black/20" />
       </div>
@@ -51,28 +51,28 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
             to the World
           </h1>
 
-          {/* Description - NO BACKGROUND SHADOW / NO DARK BOX BACKGROUND! */}
+          {/* Description */}
           <p className="text-base sm:text-xl text-white font-semibold leading-relaxed drop-shadow-[0_3px_10px_rgba(0,0,0,0.95)] max-w-2xl">
             Padmasri Global Exports specializes in the export and import of carefully sourced products, including Kewda Ruh, Frozen Chicken and Seafood, with a commitment to quality, reliability and timely global delivery.
           </p>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-            <a
-              href="#products"
+            <Link
+              href="/products"
               className="inline-flex items-center justify-center bg-[#169447] hover:bg-[#39B54A] text-white text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 shadow-xl hover:shadow-green-500/40 hover:scale-105 active:scale-95 gap-3"
             >
               <span>Explore Products</span>
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </Link>
 
-            <button
-              onClick={onOpenEnquiry}
+            <Link
+              href="/enquiry"
               className="inline-flex items-center justify-center bg-[#063B52]/90 hover:bg-[#087EA4] text-white border-2 border-white/80 text-base font-extrabold px-8 py-4 rounded-xl transition-all duration-200 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 gap-3"
             >
               <span>Request an Enquiry</span>
               <ArrowRight className="w-5 h-5 text-[#39B54A]" />
-            </button>
+            </Link>
           </div>
 
           {/* Trust Indicators */}

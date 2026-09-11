@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Preloader from "@/components/Preloader";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -17,61 +16,49 @@ import Footer from "@/components/Footer";
 import MobileBottomBar from "@/components/MobileBottomBar";
 
 export default function Home() {
-  const [selectedProductForEnquiry, setSelectedProductForEnquiry] = useState<string | undefined>(undefined);
-
-  const handleOpenEnquiry = (productName?: string) => {
-    if (productName) {
-      setSelectedProductForEnquiry(productName);
-    }
-    const enquiryElem = document.getElementById("enquiry");
-    if (enquiryElem) {
-      enquiryElem.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <main className="min-h-screen bg-[#F8FAF8] relative">
       {/* Flash Preloader Screen */}
       <Preloader />
 
       {/* Sticky Top Header */}
-      <Header onOpenEnquiry={() => handleOpenEnquiry()} />
+      <Header />
 
       {/* Hero Section */}
-      <Hero onOpenEnquiry={() => handleOpenEnquiry()} />
+      <Hero />
 
-      {/* About Us Section */}
+      {/* About Us Preview */}
       <About />
 
-      {/* Products Section with Modal Integration */}
-      <Products onOpenEnquiry={(prod) => handleOpenEnquiry(prod)} />
+      {/* Products Showcase */}
+      <Products />
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us */}
       <WhyChooseUs />
 
       {/* Export & Import Process */}
       <ExportProcess />
 
-      {/* Global Reach Dark Navy Section */}
+      {/* Global Reach */}
       <GlobalReach />
 
-      {/* Quality Commitment Section */}
+      {/* Quality Commitment */}
       <QualitySection />
 
-      {/* CTA Section */}
-      <CtaSection onOpenEnquiry={() => handleOpenEnquiry()} />
+      {/* CTA Banner */}
+      <CtaSection />
 
-      {/* B2B Enquiry Form Section */}
-      <EnquiryForm prefilledProduct={selectedProductForEnquiry} />
+      {/* B2B Enquiry Form */}
+      <EnquiryForm />
 
-      {/* Contact & Map Section */}
+      {/* Contact & Map */}
       <ContactSection />
 
       {/* Footer */}
       <Footer />
 
       {/* Mobile Fixed Bottom Navigation Bar */}
-      <MobileBottomBar onOpenEnquiry={() => handleOpenEnquiry()} />
+      <MobileBottomBar />
     </main>
   );
 }

@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 
 interface CtaSectionProps {
-  onOpenEnquiry: () => void;
+  onOpenEnquiry?: () => void;
 }
 
 export default function CtaSection({ onOpenEnquiry }: CtaSectionProps) {
@@ -24,13 +25,13 @@ export default function CtaSection({ onOpenEnquiry }: CtaSectionProps) {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto shrink-0">
-            <button
-              onClick={onOpenEnquiry}
+            <Link
+              href="/enquiry"
               className="w-full sm:w-auto inline-flex items-center justify-center bg-[#169447] hover:bg-[#39B54A] text-white font-bold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg hover:shadow-green-900/40 hover:scale-105 active:scale-95 gap-2 text-base"
             >
               <span>Request an Enquiry</span>
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </Link>
 
             <a
               href="tel:+919114477616"

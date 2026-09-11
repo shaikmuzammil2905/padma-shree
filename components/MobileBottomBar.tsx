@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { Phone, MessageSquare, Send } from "lucide-react";
 
 interface MobileBottomBarProps {
-  onOpenEnquiry: () => void;
+  onOpenEnquiry?: () => void;
 }
 
 export default function MobileBottomBar({ onOpenEnquiry }: MobileBottomBarProps) {
@@ -31,13 +32,13 @@ export default function MobileBottomBar({ onOpenEnquiry }: MobileBottomBarProps)
         </a>
 
         {/* Enquiry Action */}
-        <button
-          onClick={onOpenEnquiry}
+        <Link
+          href="/enquiry"
           className="flex flex-col items-center justify-center py-2 px-1 bg-[#087EA4] text-white rounded-xl active:scale-95 transition-transform"
         >
           <Send className="w-5 h-5 text-white mb-0.5" />
           <span className="text-[11px] font-bold tracking-wide uppercase">Enquiry</span>
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -3,15 +3,17 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone, Menu, X, ArrowRight } from "lucide-react";
 
 interface HeaderProps {
-  onOpenEnquiry: (productName?: string) => void;
+  onOpenEnquiry?: (productName?: string) => void;
 }
 
 export default function Header({ onOpenEnquiry }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,12 +29,12 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "About Us", href: "#about" },
-    { name: "Products", href: "#products" },
-    { name: "Export & Import", href: "#process" },
-    { name: "Quality", href: "#quality" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Products", href: "/products" },
+    { name: "Export & Import", href: "/export-process" },
+    { name: "Quality", href: "/quality" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -45,8 +47,8 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Official Logo - Blended seamlessly with white background */}
-          <Link href="#hero" className="flex items-center group py-0.5">
+          {/* Official Logo */}
+          <Link href="/" className="flex items-center group py-0.5">
             <div className="relative h-14 w-52 sm:h-18 sm:w-64 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
@@ -61,15 +63,22 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-base font-bold text-[#063B52] hover:text-[#169447] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#169447] hover:after:w-full after:transition-all"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`text-base font-bold transition-colors relative py-1 ${
+                    isActive
+                      ? "text-[#169447] after:w-full"
+                      : "text-[#063B52] hover:text-[#169447]"
+                  } after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#169447] hover:after:w-full after:transition-all`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop Right Phone & CTA */}
@@ -84,13 +93,13 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
               <span>+91 91144 77616</span>
             </a>
 
-            <button
-              onClick={() => onOpenEnquiry()}
+            <Link
+              href="/enquiry"
               className="inline-flex items-center justify-center bg-[#169447] hover:bg-[#39B54A] text-white text-sm font-extrabold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-105 active:scale-95 gap-2"
             >
               <span>Request a Quote</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Hamburger Icon */}
@@ -114,16 +123,21 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-0 top-[68px] bg-white border-b border-gray-200 shadow-2xl py-6 px-6 space-y-4 animate-in slide-in-from-top duration-200">
           <nav className="flex flex-col space-y-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-lg font-bold text-[#063B52] hover:text-[#169447] py-2 border-b border-gray-100"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-lg font-bold py-2 border-b border-gray-100 ${
+                    isActive ? "text-[#169447]" : "text-[#063B52] hover:text-[#169447]"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="pt-4 flex flex-col space-y-3">
@@ -135,16 +149,14 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
               <span>+91 91144 77616</span>
             </a>
 
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenEnquiry();
-              }}
+            <Link
+              href="/enquiry"
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full bg-[#169447] text-white py-3.5 rounded-xl font-extrabold text-base hover:bg-[#39B54A] transition-colors flex items-center justify-center gap-2 shadow-md"
             >
               <span>Request an Enquiry</span>
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </Link>
           </div>
         </div>
       )}

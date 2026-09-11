@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
 
 export default function Footer() {
@@ -12,9 +13,9 @@ export default function Footer() {
     <footer className="bg-[#063B52] text-white pt-16 pb-12 border-t border-white/10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-          {/* Col 1: Logo & Company Description (White Patch Work Removed!) */}
+          {/* Col 1: Logo & Company Description */}
           <div className="space-y-4">
-            <div className="relative h-16 w-64 p-1">
+            <Link href="/" className="inline-block relative h-16 w-64 p-1">
               <Image
                 src="/logo.png"
                 alt="Padmasri Global Exports Official Footer Logo"
@@ -22,7 +23,7 @@ export default function Footer() {
                 sizes="256px"
                 className="object-contain object-left filter brightness-110 drop-shadow-[0_2px_8px_rgba(255,255,255,0.4)]"
               />
-            </div>
+            </Link>
             <p className="text-xs sm:text-sm text-[#EAF7FA]/90 leading-relaxed pt-2 font-medium">
               Connecting quality Indian products with global markets. Focused on dependable Kewda Ruh, Frozen Chicken, and Seafood supply.
             </p>
@@ -35,34 +36,39 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm font-medium">
               <li>
-                <a href="#hero" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/about" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/products" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Products
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#process" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/export-process" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Export & Import
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#quality" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/quality" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Quality
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/contact" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Contact
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/enquiry" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                  Request a Quote
+                </Link>
               </li>
             </ul>
           </div>
@@ -74,19 +80,19 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm font-medium">
               <li>
-                <a href="#products" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/products/kewda-ruh" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Kewda Ruh (Essential Extract)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/products/frozen-chicken" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Frozen Chicken Cuts
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
+                <Link href="/products/seafood" className="text-[#EAF7FA]/80 hover:text-[#39B54A] transition-colors">
                   Fresh & Frozen Seafood
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
